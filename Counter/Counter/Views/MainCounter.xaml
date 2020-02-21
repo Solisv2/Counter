@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Counter.ViewModels"
+             xmlns:model="clr-namespace:Counter.Models"
+             mc:Ignorable="d"
+             BackgroundColor="WhiteSmoke"
+             
+             Shell.NavBarIsVisible="true"
+             x:Class="Counter.Views.MainCounter"
+             Title="{Binding Title}">
+    <!--<ContentPage.BindingContext>
+        <local:MainCounterViewModel/>
+    </ContentPage.BindingContext>-->
+
+    <ContentPage.Resources>
+        <!--<ResourceDictionary>
+            <model:Ticker Id="1" Player="Victor" Count="20" CommanderCount="10" x:Key="CommanderGame"></model:Ticker>
+        </ResourceDictionary>-->
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+
+        <Grid Margin="20,50,20,10" x:Name="CounterGrid">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <!--<Label Grid.Row="0" Grid.Column="0" Text="Player Name"></Label>
+            <Entry Grid.Row="0" Grid.Column="1" x:Name="PlayerName" Text="{Binding Player, Mode=TwoWay}">  </Entry>-->
+            <Label Grid.Row="0" Grid.Column="0" Text="Player Name"></Label>
+            <Picker  
+                   Grid.Row="0" Grid.Column="1" x:Name="PlayerName" SelectedIndex="{Binding NumPlayer, Mode=TwoWay}">
+            </Picker>
+            
+            <Label Grid.Row="1" Grid.Column="0" Text="Total Health"></Label>
+            <Entry Grid.Row="1" Grid.Column="1" x:Name="Count" Text="{Binding Count, Mode=TwoWay}"></Entry>
+            
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                    Clicked="Button_Clicked"
+                    Text="Start Game"></Button>
+            <!--<Label Text="Welcome to the Main Counter!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                  />
+
+
+            <Label Text="{Binding Player,Source={StaticResource CommanderGame}}"
+               
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />-->
+
+            <!--<Button Text="Save"
+                    Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="OnDeleteButtonClicked"/>-->
+        </Grid>
+        <!--<StackLayout>
+            
+            <Label Text="Welcome to the Main Counter!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                  />
+
+
+            <Label Text="{Binding Player,Source={StaticResource CommanderGame}}"
+               
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Button Text="Save"
+                    Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="OnDeleteButtonClicked"/>
+        </StackLayout>-->
+    </ContentPage.Content>
+</ContentPage>
