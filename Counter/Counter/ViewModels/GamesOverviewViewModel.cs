@@ -11,14 +11,14 @@ namespace Counter.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private readonly GameRepository GameRepository;
+        private readonly GameRepository gameRepository;
 
         public ObservableCollection<Game> Games { get; set; }
 
         public GamesOverviewViewModel()
         {
-            GameRepository = new GameRepository();
-            Games = GameRepository.Games;
+            gameRepository = new GameRepository();
+            Games = gameRepository.Games;
         }
 
         public void RaisePropertyChanged(string propertyName)

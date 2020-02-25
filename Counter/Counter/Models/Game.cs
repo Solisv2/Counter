@@ -11,10 +11,11 @@ namespace Counter.Models
 
         private int _id;
         private string _gameType;
-        private int _numPlayers;
+        private ObservableCollection<int>_numPlayers;
         private ObservableCollection<string> _player;
         private int _lifeTotal;
         private int _commanderCount;
+        private bool _isCommander;
 
 
         public int Id
@@ -36,7 +37,7 @@ namespace Counter.Models
             }
         }
 
-        public int NumPlayers
+        public ObservableCollection<int> NumPlayers
         {
             get => _numPlayers;
             set
@@ -70,6 +71,16 @@ namespace Counter.Models
             {
                 _commanderCount = value;
                 RaisePropertyChanged(nameof(CommanderCount));
+            }
+        }
+
+        public bool IsCommander
+        {
+            get => _isCommander;
+            set
+            {
+                _isCommander = value;
+                RaisePropertyChanged(nameof(IsCommander));
             }
         }
 

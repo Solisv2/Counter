@@ -39,6 +39,11 @@ namespace Counter.Views
                 Count = 40,
                 CommanderCount = 10
             };
+
+            //MainGame = new Game
+            //{
+
+            //}
             this.BindingContext = MainTicker;
         }
 

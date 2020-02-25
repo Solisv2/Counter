@@ -37,8 +37,8 @@
         <Tab Title="About" Icon="tab_about.png">
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
-        <Tab Title="Counter" Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:MainCounter}" />
+        <Tab Title="Games" Icon="tab_about.png">
+            <ShellContent ContentTemplate="{DataTemplate local:GameOverviewPage}" />
         </Tab>
     </TabBar>
 

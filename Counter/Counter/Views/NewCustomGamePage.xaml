@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:Counter.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Counter.Views.NewCustomGamePage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+
+
+    <ContentPage.BindingContext>
+        <viewmodel:GamesOverviewViewModel></viewmodel:GamesOverviewViewModel>
+    </ContentPage.BindingContext>
+    
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            
+            <Label Text="Game Type" FontSize="Medium" />
+            <Editor Text="{Binding GameType}" d:Text="Item description" FontSize="Small" Margin="0" />
+            <Label Text="Life Total" FontSize="Medium" />
+            <Entry Text="{Binding LifeTotal}" d:Text="Item name" FontSize="Small" />
+            <Label Text="# of Players" FontSize="Medium"/>
+            <Picker  ItemsSource="{Binding NumPlayers}"  ></Picker>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

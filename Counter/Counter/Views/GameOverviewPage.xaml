@@ -3,13 +3,85 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:Counter.ViewModels"
              mc:Ignorable="d"
              x:Class="Counter.Views.GameOverviewPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:GamesOverviewViewModel></viewmodel:GamesOverviewViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+            <ListView x:Name="GamesListView"
+                
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                ItemTapped="GamesListView_ItemTapped"      
+                ItemsSource="{Binding Games}"      
+                CachingStrategy="RecycleElement">
+              
+                <!--ItemSelected="OnItemSelected">-->
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                            <Grid Margin="20,50,20,10" x:Name="CounterGrid">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+
+
+                                <Label Grid.Row="0" Grid.Column="0" Text="Game Type"></Label>
+                                <Editor Grid.Row="0" Grid.Column="1"  Text="{Binding GameType, Mode=TwoWay}"></Editor>
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="Total Health"></Label>
+                                <Editor Grid.Row="1" Grid.Column="1" Text="{Binding LifeTotal, Mode=TwoWay}"></Editor>
+
+                                
+
+                                <Label x:Name="CommanderCount" Grid.Row="2" Grid.Column="0" Text="Commander Health"></Label>
+                                <Editor Grid.Row="2" Grid.Column="1" Text="{Binding CommanderCount, Mode=TwoWay}"></Editor>
+
+                                <Label Grid.Row="3" Grid.Column="0" Text="Player Count"></Label>
+                                <Picker Grid.Row="3" Grid.Column="1" ItemsSource="{Binding NumPlayers}"></Picker>
+
+                                <Label Grid.Row="4" Grid.Column="0" Text="Is Commander Game"></Label>
+                                <CheckBox Grid.Row="4" Grid.Column="1" CheckedChanged="CheckBox_CheckedChanged"  ></CheckBox>
+
+                                <Button Grid.Row ="5" Grid.ColumnSpan="2" x:Name="StartGameButton" 
+                                    Clicked="StartGameButton_Clicked"
+                                    Text="Start Game" 
+                                ></Button>
+
+                                    <!--<Picker.Items>
+                                        <x:String>2</x:String>
+                                        <x:String>3</x:String>
+                                        <x:String>4</x:String>
+                                    </Picker.Items>-->
+                                 
+                            </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
     </ContentPage.Content>
 </ContentPage>
