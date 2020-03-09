@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:Counter.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Counter.Views.CurrentGameCom2Page">
+
+    <ContentPage.Content>
+        <StackLayout >
+
+
+            <Grid Margin="20,50,20,10" x:Name="CounterGrid">
+
+           
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    
+                </Grid.ColumnDefinitions>
+
+                
+                <Editor Grid.ColumnSpan="3" Text="Player 1" HorizontalOptions="Center" Rotation="180"></Editor>
+                <Button Grid.Row="1" Grid.Column="0" Text="-" FontSize="40"  Command="{Binding SubLifeCommand}" CommandParameter="{Binding Players[0]}" ></Button>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Players[0].PlayerHealth}"  RotationX="180"
+                       FontSize="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Button Grid.Row="1" Grid.Column="2" Text="+" FontSize="40" Command="{Binding AddLifeCommand}" CommandParameter="{Binding Players[0]}" ></Button>
+
+                <Button Grid.Row="2" Grid.Column="0" Text="-" FontSize="40" Command="{Binding SubCommanderLifeCommand}" CommandParameter="{Binding Players[0]}" ></Button>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Players[0].CommanderHealth}" RotationX="180" 
+                       FontSize="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Button Grid.Row="2" Grid.Column="2" Text="+" FontSize="40" Command="{Binding AddCommanderLifeCommand}" CommandParameter="{Binding Players[0]}" ></Button>
+
+
+                <Label Grid.Row="3" Grid.ColumnSpan="3" Text="{Binding Game.GameType}" FontSize="40" HorizontalOptions="Center"></Label>
+
+                <Button Grid.Row="4" Grid.Column="0" Text="-" FontSize="40" Command="{Binding SubLifeCommand}" CommandParameter="{Binding Players[1]}"></Button>
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding Players[1].PlayerHealth}" 
+                       FontSize="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Button Grid.Row="4" Grid.Column="2" Text="+" FontSize="40" Command="{Binding AddLifeCommand}" CommandParameter="{Binding Players[1]}" ></Button>
+
+                <Button Grid.Row="5" Grid.Column="0" Text="-" FontSize="40" Command="{Binding SubCommanderLifeCommand}" CommandParameter="{Binding Players[1]}"></Button>
+                <Label Grid.Row="5" Grid.Column="1" Text="{Binding Players[1].CommanderHealth}"
+                       FontSize="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Button Grid.Row="5" Grid.Column="2" Text="+" FontSize="40" Command="{Binding AddCommanderLifeCommand}" CommandParameter="{Binding Players[1]}" ></Button>
+
+                <Editor Grid.Row="6" Grid.ColumnSpan="3" Text="Player 1" HorizontalOptions="Center" ></Editor>
+
+              
+
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

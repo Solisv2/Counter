@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvvmHelpers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,12 +7,13 @@ using System.Text;
 
 namespace Counter.Models
 {
-    public class Game
+    public class Game: ObservableObject
     {
 
         private int _id;
         private string _gameType;
         private ObservableCollection<int>_numPlayers;
+        private int _selectedNumPlayers;
         private ObservableCollection<string> _player;
         private int _lifeTotal;
         private int _commanderCount;
@@ -23,8 +25,7 @@ namespace Counter.Models
             get => _id;
             set
             {
-                _id = value;
-                RaisePropertyChanged(nameof(Id));
+                SetProperty(ref _id, value);          
             }
         }
         public string GameType
@@ -32,8 +33,7 @@ namespace Counter.Models
             get => _gameType;
             set
             {
-                _gameType = value;
-                RaisePropertyChanged(nameof(GameType));
+                SetProperty(ref _gameType, value);
             }
         }
 
@@ -42,8 +42,17 @@ namespace Counter.Models
             get => _numPlayers;
             set
             {
-                _numPlayers = value;
-                RaisePropertyChanged(nameof(NumPlayers));
+
+                SetProperty(ref _numPlayers, value);     
+            }
+        }
+
+        public int SelectedNumPlayers
+        {
+            get => _selectedNumPlayers;
+            set
+            {
+                SetProperty(ref _selectedNumPlayers, value);
             }
         }
         public ObservableCollection<string> Player
@@ -51,8 +60,7 @@ namespace Counter.Models
             get => _player;
             set
             {
-                _player = value;
-                RaisePropertyChanged(nameof(Player));
+                SetProperty(ref _player, value);
             }
         }
         public int LifeTotal
@@ -60,8 +68,7 @@ namespace Counter.Models
             get => _lifeTotal;
             set
             {
-                _lifeTotal = value;
-                RaisePropertyChanged(nameof(LifeTotal));
+                SetProperty(ref _lifeTotal, value);
             }
         }
         public int CommanderCount
@@ -69,8 +76,7 @@ namespace Counter.Models
             get => _commanderCount;
             set
             {
-                _commanderCount = value;
-                RaisePropertyChanged(nameof(CommanderCount));
+                SetProperty(ref _commanderCount, value);            
             }
         }
 
@@ -79,16 +85,11 @@ namespace Counter.Models
             get => _isCommander;
             set
             {
-                _isCommander = value;
-                RaisePropertyChanged(nameof(IsCommander));
+                SetProperty(ref _isCommander, value);               
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+      
     }
 }
 

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Counter.Views.CurrentGame3Page">
+    <ContentPage.Content>
+        <StackLayout>
+
+
+            <Grid Margin="20,20,20,10">
+
+
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+
+
+                <Editor Grid.Row="0" Grid.ColumnSpan="3" Text="Player 1" HorizontalOptions="Center" Rotation="180"></Editor>
+                <Button Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Text="-" FontSize="40"  Command="{Binding SubLifeCommand}" CommandParameter="{Binding Players[0]}" ></Button>
+                <Label Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Text="{Binding Players[0].PlayerHealth}"  RotationX="180"
+                       FontSize="40" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Button Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Text="+" FontSize="30" Command="{Binding AddLifeCommand}" CommandParameter="{Binding Players[0]}" ></Button>
+
+               
+
+                <Editor Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Text="Player 2" HorizontalOptions="Center" Rotation="180"></Editor>
+                <Button Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" Text="-" FontSize="40"  Command="{Binding SubLifeCommand}" CommandParameter="{Binding Players[1]}" ></Button>
+                <Label Grid.Row="1" Grid.Column="4" Grid.RowSpan="2" Text="{Binding Players[1].PlayerHealth}"  RotationX="180"
+                       FontSize="40" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Button Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Text="+" FontSize="30" Command="{Binding AddLifeCommand}" CommandParameter="{Binding Players[1]}" ></Button>
+
+                
+
+                <!--<Label Grid.Row="3" Grid.ColumnSpan="3" Text="{Binding Game.GameType}" FontSize="40" HorizontalOptions="Center"></Label>-->
+
+                <Button Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Grid.RowSpan="2" Text="-" FontSize="40" Command="{Binding SubLifeCommand}" CommandParameter="{Binding Players[2]}"></Button>
+                <Label Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="2" Grid.RowSpan="2" Text="{Binding Players[2].PlayerHealth}" 
+                       FontSize="40" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Button Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="4" Grid.RowSpan="2" Text="+" FontSize="30" Command="{Binding AddLifeCommand}" CommandParameter="{Binding Players[2]}" ></Button>
+
+               
+
+                <Editor Grid.Row="6" Grid.ColumnSpan="6" Text="Player 3" HorizontalOptions="Center" ></Editor>
+
+
+
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

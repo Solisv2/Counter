@@ -11,77 +11,69 @@
         <viewmodel:GamesOverviewViewModel></viewmodel:GamesOverviewViewModel>
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
-        <StackLayout>
-            <ListView x:Name="GamesListView"
-                
-                VerticalOptions="FillAndExpand"
-                HasUnevenRows="true"
-                RefreshCommand="{Binding LoadItemsCommand}"
-                IsPullToRefreshEnabled="true"
-                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                ItemTapped="GamesListView_ItemTapped"      
-                ItemsSource="{Binding Games}"      
-                CachingStrategy="RecycleElement">
-              
-                <!--ItemSelected="OnItemSelected">-->
-            
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                            <Grid Margin="20,50,20,10" x:Name="CounterGrid">
+        <StackLayout x:Name="Game1" BindingContext="{Binding CustomGame}" BindableLayout.ItemsSource="{Binding Games}">
+            <ScrollView>
+                <Grid Margin="20,50,20,10" x:Name="CounterGrid">
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"></RowDefinition>
-                                    <RowDefinition Height="50"></RowDefinition>
-                                    <RowDefinition Height="50"></RowDefinition>
-                                    <RowDefinition Height="50"></RowDefinition>
-                                </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
 
 
-                                <Label Grid.Row="0" Grid.Column="0" Text="Game Type"></Label>
-                                <Editor Grid.Row="0" Grid.Column="1"  Text="{Binding GameType, Mode=TwoWay}"></Editor>
+                <Label  Grid.Row="0" Grid.Column="0" Text="Game Type"></Label>
+                <Editor x:Name="GameType" Grid.Row="0" Grid.Column="1"  Text="{Binding GameType, Mode=TwoWay}"></Editor>
 
-                                <Label Grid.Row="1" Grid.Column="0" Text="Total Health"></Label>
-                                <Editor Grid.Row="1" Grid.Column="1" Text="{Binding LifeTotal, Mode=TwoWay}"></Editor>
+                <Label  Grid.Row="1" Grid.Column="0" Text="Total Health"></Label>
+                <Editor x:Name="Lifetotal" Grid.Row="1" Grid.Column="1" Text="{Binding LifeTotal, Mode=TwoWay}"></Editor>
 
-                                
 
-                                <Label x:Name="CommanderCount" Grid.Row="2" Grid.Column="0" Text="Commander Health"></Label>
-                                <Editor Grid.Row="2" Grid.Column="1" Text="{Binding CommanderCount, Mode=TwoWay}"></Editor>
 
-                                <Label Grid.Row="3" Grid.Column="0" Text="Player Count"></Label>
-                                <Picker Grid.Row="3" Grid.Column="1" ItemsSource="{Binding NumPlayers}"></Picker>
 
-                                <Label Grid.Row="4" Grid.Column="0" Text="Is Commander Game"></Label>
-                                <CheckBox Grid.Row="4" Grid.Column="1" CheckedChanged="CheckBox_CheckedChanged"  ></CheckBox>
 
-                                <Button Grid.Row ="5" Grid.ColumnSpan="2" x:Name="StartGameButton" 
+                <Label Grid.Row="2" Grid.Column="0" Text="Player Count"></Label>
+                <Picker x:Name="NumPlayers" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding NumPlayers, Mode=TwoWay}"  
+                                        SelectedIndexChanged="OnPickerSelectedIndexChanged"></Picker>
+
+                <Label x:Name="CommanderCheckLabel" Grid.Row="3" Grid.Column="0" Text="Is Commander Game"></Label>
+                <CheckBox x:Name="CommaderCheckEditor" Grid.Row="3" Grid.Column="1"  BindingContext="{Binding IsCommander, Mode=TwoWay}" 
+                                          CheckedChanged="CheckBox_CheckedChanged" IsChecked="True"   ></CheckBox>
+
+                <Label x:Name="CommanderCountLabel" Grid.Row="4" Grid.Column="0" Text="Commander Health"></Label>
+                <Editor x:Name="CommanderCountEditor" Grid.Row="4" Grid.Column="1" Text="{Binding CommanderCount, Mode=TwoWay}"></Editor>
+
+                <Button x:Name="StartGameButton1" Grid.Row ="4" Grid.ColumnSpan="2" 
                                     Clicked="StartGameButton_Clicked"
                                     Text="Start Game" 
+                                    CornerRadius="20"
+                                    IsVisible="False"
+                                    
                                 ></Button>
 
-                                    <!--<Picker.Items>
+                <Button x:Name="StartGameButton2" Grid.Row ="6" Grid.ColumnSpan="2"  
+                                    Clicked="StartGameButton_Clicked"
+                                    Text="Start Game" 
+                                    CornerRadius="20"
+                                    
+                                ></Button>
+
+                <!--<Picker.Items>
                                         <x:String>2</x:String>
                                         <x:String>3</x:String>
                                         <x:String>4</x:String>
                                     </Picker.Items>-->
-                                 
-                            </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+
+                </Grid>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -30,7 +30,6 @@ namespace Counter.Models
                         GameType = "Free for All",
                          NumPlayers = new ObservableCollection<int>
                         {
-                            1,
                             2,
                             3,
                             4
@@ -39,25 +38,26 @@ namespace Counter.Models
                         LifeTotal = 20,
                         CommanderCount = 20,
                         IsCommander = true
+                    },
+                    new Game
+                    {
+                        Player = new ObservableCollection<string>
+                        {
+                            "player 1",
+                            "player 2"
+                        },
+                        GameType = "Commander",
+                         NumPlayers = new ObservableCollection<int>
+                        {
+                            1,
+                            2,
+                            3,
+                            4
+                        },
+                        LifeTotal = 40,
+                        CommanderCount = 20,
+                        IsCommander = true
                     }
-                //    new Game
-                //    {
-                //        Player = new ObservableCollection<string>
-                //        {
-                //            "player 1",
-                //            "player 2"
-                //        },
-                //        GameType = "Commander",
-                //         NumPlayers = new ObservableCollection<int>
-                //        {
-                //            1,
-                //            2,
-                //            3,
-                //            4
-                //        },
-                //        LifeTotal = 40,
-                //        CommanderCount = 20
-                //    }
                 };
             }
         }

@@ -11,17 +11,15 @@ using Xamarin.Forms.Xaml;
 namespace Counter.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CurrentGamePage : ContentPage
+    public partial class CurrentGameCom2Page : ContentPage
     {
-        CustomGameViewModel viewModel;
-        public CurrentGamePage()
+     
+        public CurrentGameCom2Page()
         {
             InitializeComponent();
-        }
-        public CurrentGamePage(CustomGameViewModel viewModel)
-        {
-            InitializeComponent();
-            BindingContext = viewModel = new CustomGameViewModel();
-        }
+            MessagingCenter.Subscribe<CustomGameViewModel>(this, "GameOver",(sender) =>
+            DisplayAlert("Game Over", "Someone Lost....", "Exit"));
+
+        }   
     }
 }
