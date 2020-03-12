@@ -14,8 +14,7 @@ namespace Counter.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GameOverviewPage : ContentPage
-    {
-        GamesOverviewViewModel viewModel;
+    {    
         Game game= new Game();
         Picker picker;
         int PickerValue;
@@ -27,27 +26,20 @@ namespace Counter.Views
             
         }
 
-        private void GamesListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewCustomGamePage()));
-        }
 
         private async void StartGameButton_Clicked(object sender, EventArgs e)
         {
             
             LoadGame(game);
-            if(game.IsCommander == true)
+            if(game.IsCommander == true)    //commander games
             {
                 if (PickerValue == 2)
                 {
                     CurrentGameCom2Page currentGamePage = new CurrentGameCom2Page();
                     CustomGameViewModel customGameViewModel = new CustomGameViewModel(game, PickerValue);
                     currentGamePage.BindingContext = customGameViewModel;
+                    currentGamePage.OldGame = game;
+                    
                     await Navigation.PushModalAsync(currentGamePage);
                 }
                 else if (PickerValue == 3)
@@ -55,6 +47,7 @@ namespace Counter.Views
                     CurrentGameCom3Page currentGamePage = new CurrentGameCom3Page();
                     CustomGameViewModel customGameViewModel = new CustomGameViewModel(game, PickerValue);
                     currentGamePage.BindingContext = customGameViewModel;
+                    currentGamePage.OldGame = game;
                     await Navigation.PushModalAsync(currentGamePage);
                 }
                 else if (PickerValue == 4)
@@ -63,16 +56,19 @@ namespace Counter.Views
                     CurrentGameCom4Page currentGamePage = new CurrentGameCom4Page();
                     CustomGameViewModel customGameViewModel = new CustomGameViewModel(game, PickerValue);
                     currentGamePage.BindingContext = customGameViewModel;
+                    currentGamePage.OldGame = game;
                     await Navigation.PushModalAsync(currentGamePage);
                 }
             }
-            else
+            else    //non commander games
             {
                 if (PickerValue == 2)
                 {
                     CurrentGame2Page currentGamePage = new CurrentGame2Page();
                     CustomGameViewModel customGameViewModel = new CustomGameViewModel(game, PickerValue);
                     currentGamePage.BindingContext = customGameViewModel;
+                    currentGamePage.OldGame = game;
+                   
                     await Navigation.PushModalAsync(currentGamePage);
                 }
                 else if (PickerValue == 3)
@@ -80,22 +76,22 @@ namespace Counter.Views
                     CurrentGame3Page currentGamePage = new CurrentGame3Page();
                     CustomGameViewModel customGameViewModel = new CustomGameViewModel(game, PickerValue);
                     currentGamePage.BindingContext = customGameViewModel;
+                    currentGamePage.OldGame = game;
                     await Navigation.PushModalAsync(currentGamePage);
                 }
                 else if (PickerValue == 4)
                 {
-
-                    CurrentGame4Page currentGamePage = new CurrentGame4Page();
+                    
+                    CurrentGame4Page currentGamePage = new CurrentGame4Page();      //load new page and feed viewmodel values
                     CustomGameViewModel customGameViewModel = new CustomGameViewModel(game, PickerValue);
-                    currentGamePage.BindingContext = customGameViewModel;
+                    currentGamePage.BindingContext = customGameViewModel;           
+                    currentGamePage.OldGame = game;                     //done for replay button on next page
+                    //await Shell.Current.GoToAsync($"")
                     await Navigation.PushModalAsync(currentGamePage);
+                    
                 }
             }
-           
-            
-
-            //await Navigation.PushModalAsync(new CurrentGamePage(new CustomGameViewModel()));
-            //await Navigation.PushModalAsync(new CurrentGamePage(new CustomGameViewModel(test)));
+              
         }
 
         private void LoadGame(Game _game)
@@ -106,9 +102,10 @@ namespace Counter.Views
             _game.IsCommander = IsCommander;
             _game.SelectedNumPlayers = picker.SelectedIndex;
             _game.CommanderCount = int.Parse(CommanderCountEditor.Text);
-            PickerValue = picker.SelectedIndex + 2;
-            
+            PickerValue = picker.SelectedIndex + 2;          
         }
+
+       
 
         private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
         {

@@ -35,8 +35,8 @@ namespace Counter.Models
                             4
                         },
 
-                        LifeTotal = 20,
-                        CommanderCount = 20,
+                        LifeTotal = 2,
+                        CommanderCount = 2,
                         IsCommander = true
                     },
                     new Game
